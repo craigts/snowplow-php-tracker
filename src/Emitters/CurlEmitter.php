@@ -48,7 +48,7 @@ class CurlEmitter extends Emitter {
     public function __construct($uri, $protocol = NULL, $type = NULL, $buffer_size = NULL, $debug = false) {
         $this->type           = $this->getRequestType($type);
         $this->url            = $this->getCollectorUrl($this->type, $uri, $protocol);
-        $this->curl_limit     = $this->type == "POST" ? self::CURL_AMOUNT_POST : self::CURL_AMOUNT_GET;
+        $this->curl_limit     = $this->type == "POST" ? self::CURL_AMOUNT_POST : $buffer_size;
         $this->rolling_window = $this->type == "POST" ? self::CURL_WINDOW_POST : self::CURL_WINDOW_GET;
 
         // If debug is on create a requests_results array
